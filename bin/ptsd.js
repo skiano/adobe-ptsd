@@ -30,6 +30,7 @@ if (typeof options.script !== 'string') {
 const applicationsPath = '/Applications'
 const configPath = require.resolve(path.resolve(process.cwd(), options.config))
 const scriptPath = require.resolve(path.resolve(process.cwd(), options.script))
+const sourcePath = require.resolve(path.resolve(__dirname, '..', 'src'))
 const tempDirectory = path.resolve(__dirname, '..', 'temp')
 const tempJsxDest = path.resolve(tempDirectory, 'src.temp.jsx')
 const tempScriptDest = path.resolve(tempDirectory, 'src.temp.scpt')
@@ -47,6 +48,7 @@ const ptsdPlugin = (config) => {
     },
     resolveId(importee, importer) {
       if ( !importer ) return null; // disregard entry module
+      if (importee === 'ptsd') return sourcePath
       if (importee === 'ptsd/config') return configPath
     },
   }

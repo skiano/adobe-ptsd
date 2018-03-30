@@ -1,3 +1,5 @@
 import config from 'ptsd/config'
 
-alert(`hello world ${config.title}`)
+export const sayHello = () => {
+  alert(`hello world ${config.title}`)
+}
