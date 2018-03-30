@@ -1,1 +1,3 @@
-alert('hello world')
+import config from 'ptsd/config'
+
+alert(`hello world ${config.title}`)
