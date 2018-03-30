@@ -14,12 +14,14 @@ Because Adobe’s IDE for making .jsx scripts makes me sad.
 * Not even close to official.
 * Only works on a mac.
 
+### Installation
+
+```bash
+$ npm install adobe-ptsd -g
+```
+
 ### Usage
 
 ```bash
-# install it
-$ npm install adobe-ptsd -g
-
-# use it
 $ ptsd --script my-file.js --app photoshop
 ```
