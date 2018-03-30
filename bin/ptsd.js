@@ -23,13 +23,13 @@ const options = require('minimist')(process.argv.slice(2), {
   }
 });
 
-// TODO: validate and fill out options
-// ie turn photoshop into Adobe Photoshop CC 2018
-// path to applications /Applications/**
+if (typeof options.script !== 'string') {
+  throw new Error('script is required')
+}
 
-const scriptSrc = require.resolve(path.resolve(__dirname, '..', 'src'))
-
-const configPath = path.resolve(process.cwd(), options.config)
+const applicationsPath = '/Applications'
+const configPath = require.resolve(path.resolve(process.cwd(), options.config))
+const scriptPath = require.resolve(path.resolve(process.cwd(), options.script))
 const tempDirectory = path.resolve(__dirname, '..', 'temp')
 const tempJsxDest = path.resolve(tempDirectory, 'src.temp.jsx')
 const tempScriptDest = path.resolve(tempDirectory, 'src.temp.scpt')
@@ -59,7 +59,7 @@ const ptsdPlugin = (config) => {
  */
 async function createAdobeJsx() {
   const bundle = await rollup.rollup({
-    input: scriptSrc,
+    input: scriptPath,
     plugins: [
       ptsdPlugin(),
       resolve(),
@@ -80,9 +80,23 @@ async function createAdobeJsx() {
  * tells the adobe software to run the jsx
  */
 async function createAppleScript() {
+  const isAdobeLike = /^Adobe.*/
+  const targetApp = new RegExp(options.app, 'i')
+
+  const apps = await fs.readdir(applicationsPath)
+  const adobeApps = apps.filter(f => isAdobeLike.test(f))
+  const matchingApps = adobeApps.filter(f => targetApp.test(f))
+
+  if (matchingApps.length > 1) {
+    throw new Error(
+      `Found more than one app\n\t - ${matchingApps.join('\n\t - ')}\n` +
+      `Please make \`app\` argument more specific`
+    )
+  }
+
   // @see: https://stackoverflow.com/a/9029394
   await fs.writeFile(tempScriptDest, [
-    'tell application "Adobe Photoshop CC 2018"',
+    `tell application "${matchingApps[0]}"`,
     `\t do javascript "#include ${tempJsxDest}"`,
     'end tell',
   ].join('\n'))
