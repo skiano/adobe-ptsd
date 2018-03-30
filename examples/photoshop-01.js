@@ -4,4 +4,9 @@ import {
   argv,
 } from 'ptsd'
 
-sayHello(argv.title || config.title)
+
+function main () {
+  sayHello(argv.title || config.title)
+}
+
+main();

@@ -122,7 +122,7 @@ async function executeScript() {
 
     await exec(`osascript ${tempScriptDest}`)
 
-    await fs.remove(tempDirectory)
+    // await fs.remove(tempDirectory)
   }
   catch (err) {
     console.error(err)
