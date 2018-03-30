@@ -1,9 +1,9 @@
 #! /usr/bin/env node
 const fs = require('fs-extra')
 const path = require('path')
+const chalk = require('chalk')
 const rollup = require('rollup')
 const resolve = require('rollup-plugin-node-resolve')
-const babel = require('rollup-plugin-babel')
 const buble = require('rollup-plugin-buble')
 const { promisify } = require('util');
 const exec = promisify(require('child_process').exec)
@@ -125,7 +125,7 @@ async function executeScript() {
     // await fs.remove(tempDirectory)
   }
   catch (err) {
-    console.error(err)
+    console.error(chalk.red(err.toString()))
   }
 }
 

@@ -6,5 +6,5 @@ export const argv = passedArgs
 
 export const sayHello = (txt) => {
   alert(`hello ${txt}`)
-  const inputFolder = Folder.selectDialog("Select a folder to process");
+  var inputFolder = Folder.selectDialog("Select a folder to process");
 }
