@@ -1,12 +1,12 @@
-# adobe-ptsd
+# nodobe
 
 ### What
 
-Create your adobe jsx scripts with rollup so you can use import/export es6 etc!
+Create your Adobe .jsx scripts with rollup so you can use import/export es6 etc!
 
 ### Why
 
-Because Adobe’s IDE for making .jsx scripts makes me sad.
+Because Adobe’s IDE for making .jsx scripts makes me sad, and I would rather use more familiar tools and conventions.
 
 ### Drawbacks
 
