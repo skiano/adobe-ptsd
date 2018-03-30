@@ -1,5 +1,7 @@
 import {
-  sayHello
+  config,
+  sayHello,
+  argv,
 } from 'ptsd'
 
-sayHello()
+sayHello(argv.title || config.title)

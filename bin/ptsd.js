@@ -17,7 +17,6 @@ const options = require('minimist')(process.argv.slice(2), {
     w: 'watch',
   },
   default: {
-    config: 'ptsd.config.json',
     execute: false,
     watch: false,
   }
@@ -27,13 +26,19 @@ if (typeof options.script !== 'string') {
   throw new Error('script is required')
 }
 
+if (typeof options.app !== 'string') {
+  throw new Error('app is required')
+}
+
 const applicationsPath = '/Applications'
-const configPath = require.resolve(path.resolve(process.cwd(), options.config))
-const scriptPath = require.resolve(path.resolve(process.cwd(), options.script))
-const sourcePath = require.resolve(path.resolve(__dirname, '..', 'src'))
 const tempDirectory = path.resolve(__dirname, '..', 'temp')
 const tempJsxDest = path.resolve(tempDirectory, 'src.temp.jsx')
 const tempScriptDest = path.resolve(tempDirectory, 'src.temp.scpt')
+const scriptPath = require.resolve(path.resolve(process.cwd(), options.script))
+const sourcePath = require.resolve(path.resolve(__dirname, '..', 'src'))
+const configPath = options.config
+  ? require.resolve(path.resolve(process.cwd(), options.config))
+  : require.resolve(path.resolve(__dirname, 'defaultConfig'))
 
 const ptsdPlugin = (config) => {
   try {
@@ -44,12 +49,14 @@ const ptsdPlugin = (config) => {
 
   return {
     load(id) {
+      if (id === 'ptsd/args') return `export default ${JSON.stringify(options)}`
       if (id === configPath) return `export default ${JSON.stringify(config)}`
     },
     resolveId(importee, importer) {
       if ( !importer ) return null; // disregard entry module
       if (importee === 'ptsd') return sourcePath
       if (importee === 'ptsd/config') return configPath
+      if (importee === 'ptsd/args') return 'ptsd/args'
     },
   }
 }

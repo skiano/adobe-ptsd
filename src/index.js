@@ -1,5 +1,9 @@
-import config from 'ptsd/config'
+import configuration from 'ptsd/config'
+import passedArgs from 'ptsd/args'
 
-export const sayHello = () => {
-  alert(`hello world ${config.title}`)
+export const config = configuration
+export const argv = passedArgs
+
+export const sayHello = (txt) => {
+  alert(`hello ${txt}`)
 }
