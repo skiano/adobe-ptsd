@@ -6,7 +6,7 @@ Create your adobe jsx scripts with rollup so you can use import/export es6 etc!
 
 ### Why
 
-Because the ide for making jsx scripts makes me sad.
+Because Adobe’s IDE for making .jsx scripts makes me sad.
 
 ### Drawbacks
 
