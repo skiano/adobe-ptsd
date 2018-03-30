@@ -23,5 +23,5 @@ $ npm install adobe-ptsd -g
 ### Usage
 
 ```bash
-$ ptsd --script my-file.js --app photoshop
+$ ptsd --app photoshop --script my-file.js
 ```
