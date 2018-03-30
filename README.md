@@ -17,5 +17,9 @@ Because Adobe’s IDE for making .jsx scripts makes me sad.
 ### Usage
 
 ```bash
-ptsd --script my-file.js --app photoshop
+# install it
+$ npm install adobe-ptsd -g
+
+# use it
+$ ptsd --script my-file.js --app photoshop
 ```
