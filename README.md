@@ -17,11 +17,11 @@ Because Adobe’s IDE for making .jsx scripts makes me sad, and I would rather u
 ### Installation
 
 ```bash
-$ npm install adobe-ptsd -g
+$ npm install nodobe -g
 ```
 
 ### Usage
 
 ```bash
-$ ptsd --app photoshop --script my-file.js
+$ nodobe --app photoshop --script my-file.js
 ```

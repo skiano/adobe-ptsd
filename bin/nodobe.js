@@ -40,7 +40,7 @@ const configPath = options.config
   ? require.resolve(path.resolve(process.cwd(), options.config))
   : require.resolve(path.resolve(__dirname, 'defaultConfig'))
 
-const ptsdPlugin = (config) => {
+const nodobePlugin = (config) => {
   try {
     config = config || require(configPath)
   } catch (e) {
@@ -49,14 +49,14 @@ const ptsdPlugin = (config) => {
 
   return {
     load(id) {
-      if (id === 'ptsd/args') return `export default ${JSON.stringify(options)}`
+      if (id === 'nodobe/args') return `export default ${JSON.stringify(options)}`
       if (id === configPath) return `export default ${JSON.stringify(config)}`
     },
     resolveId(importee, importer) {
       if ( !importer ) return null; // disregard entry module
-      if (importee === 'ptsd') return sourcePath
-      if (importee === 'ptsd/config') return configPath
-      if (importee === 'ptsd/args') return 'ptsd/args'
+      if (importee === 'nodobe') return sourcePath
+      if (importee === 'nodobe/config') return configPath
+      if (importee === 'nodobe/args') return 'nodobe/args'
     },
   }
 }
@@ -64,20 +64,20 @@ const ptsdPlugin = (config) => {
 /**
  * createAdobeJsx
  * makes a temporary jsx file
- * and allows the js to import from ptsd helpers
+ * and allows the js to import from nodobe helpers
  */
 async function createAdobeJsx() {
   const bundle = await rollup.rollup({
     input: scriptPath,
     plugins: [
-      ptsdPlugin(),
+      nodobePlugin(),
       resolve(),
       buble(),
     ],
   })
 
   await bundle.write({
-    globals: ['ptsd/config'],
+    globals: ['nodobe/config'],
     file: tempJsxDest,
     format: 'iife'
   })

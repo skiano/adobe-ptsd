@@ -1,7 +1,7 @@
 import {
   config,
   argv,
-} from 'ptsd'
+} from 'nodobe'
 
 alert(`hello ${argv.title || config.title}`)
 
