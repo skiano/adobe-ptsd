@@ -14,13 +14,17 @@ const options = require('minimist')(process.argv.slice(2), {
     a: 'app',
     s: 'script',
     e: 'execute',
-    w: 'watch',
+    h: 'help',
   },
   default: {
-    execute: false,
-    watch: false,
+    execute: true,
   }
 });
+
+if (options.help) {
+  console.log(`\n${fs.readFileSync(require.resolve('./help.txt')).toString().trim()}\n`)
+  process.exit()
+}
 
 if (typeof options.script !== 'string') {
   throw new Error('script is required')
