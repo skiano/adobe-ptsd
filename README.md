@@ -26,6 +26,8 @@ $ npm install nodobe -g
 $ nodobe --app photoshop --script my-file.js
 ```
 
+--------
+
 ### Running examples in development
 
 If you want to contribute, you will need to be able to run the examples
