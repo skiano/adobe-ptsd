@@ -51,13 +51,27 @@ The same options are available in the node interface and the cli
 
 ### Immediate execution vs preset generation
 
-...
+If you do not specify the `preset` option, your script will build and execute immediately. However, if you prefer to create a preset you can use the `preset` option. 
+
+If the `preset` flag or option is `true`, then `nodobe` will attempt to build the script to the applications `Presets/Scripts` folder. Typically this would require `sudo` unless you have changed the permissions for that folder.
+
+`preset` can also be set to a relative path where you want to generate the script.
 
 ### Configuration for your script
 
-...from arguments
+Configuration is optional, and you can use a file or extra cli arguments
 
-...from config file
+If you specify the `config` option, `nodobe` will attempt to resolve it using require. The resolved object must be an object that can be JSON stringified. It will then be available to your automation script like so:
+
+```javascript
+import { config } from 'nodobe'
+```
+
+All the cli arguments are parsed by `minimist` and passed directly into your script, which means you can use them like so:
+
+```javascript
+import { argv } from 'nodobe'
+```
 
 --------
 
