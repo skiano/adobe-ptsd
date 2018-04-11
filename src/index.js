@@ -44,7 +44,7 @@ module.exports = async function nodobe(options) {
     /**
      * Support async config function based on options
      */
-    if (typeof config === function) {
+    if (typeof config === 'function') {
       config = await Promise.resolve(config(options))
     }
   } catch (e) {
