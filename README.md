@@ -6,9 +6,9 @@ Create your Adobe .jsx scripts with rollup so you can use import/export es6 etc!
 
 ### Why
 
-Because Adobe’s IDE for making .jsx scripts makes me sad, and I would rather use more familiar tools and conventions.
-
-On a more practical note, sometimes I want to make the script accept arguments on a command line or from another process (such as my build) and I'm not aware of an easy way to do that without something like this.
+* Adobe’s IDE for making .jsx scripts makes me sad, and I would rather use more familiar tools and conventions.
+* I want to use and reuse bits of script without mysterious include comments
+* Sometimes I want to make the script accept arguments on a command line or from another process (such as my build) and I'm not aware of an easy way to do that without something like this.
 
 ### Drawbacks
 
