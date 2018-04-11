@@ -40,6 +40,13 @@ module.exports = async function nodobe(options) {
   let config
   try {
     config = require(configPath)
+
+    /**
+     * Support async config function based on options
+     */
+    if (typeof config === function) {
+      config = await Promise.resolve(config(options))
+    }
   } catch (e) {
     throw new Error(`Error loading configuration: ${configPath}`)
   }
