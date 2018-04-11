@@ -30,7 +30,7 @@ $ nodobe --app photoshop --script my-file.js
 
 ### Node usage
 
-```bash
+```javascript
 const nodobe = require('nodobe')
 
 nodobe({
