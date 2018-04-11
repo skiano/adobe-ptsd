@@ -2,7 +2,7 @@
 
 ### What
 
-Automate Adobe products scripts with es6 import/export goodness and execute them from node or command line.
+Automate Adobe products with es6 and execute them from node or command line.
 
 ### Why
 
