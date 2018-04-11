@@ -2,7 +2,7 @@
 
 ### What
 
-Create your Adobe .jsx scripts with rollup so you can use import/export es6 etc!
+Create your Adobe .jsx scripts with es6 import/export goodness and execute them from node or command line.
 
 ### Why
 
