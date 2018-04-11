@@ -22,20 +22,35 @@ On a more practical note, sometimes I want to make the script accept arguments o
 $ npm install nodobe -g
 ```
 
-### Usage
+### Command Line Usage
 
 ```bash
 $ nodobe --app photoshop --script my-file.js
 ```
 
---------
-
-### Running examples in development
-
-If you want to contribute, you will need to be able to run the examples
+### Node usage
 
 ```bash
-$ git clone https://github.com/skiano/nodobe.git # clone the source
-$ cd nodobe  # navigate to project
-$ npm start photoshop-01 # or any other example in examples/
+const nodobe = require('nodobe')
+
+nodobe({
+  script: 'relative/path/to/script',
+  // other options
+}).catch(err => console.error(err)
+```
+
+--------
+
+### Development
+
+If you want to contribute, you can build all the example scripts with
+
+```bash
+npm start
+```
+
+Or you can start a watcher with
+
+```bash
+npm run dev
 ```
