@@ -46,11 +46,11 @@ nodobe({
 If you want to contribute, you can build all the example scripts with
 
 ```bash
-npm start
+$ npm start
 ```
 
 Or you can start a watcher with
 
 ```bash
-npm run dev
+$ npm run dev
 ```
