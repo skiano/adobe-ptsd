@@ -28,26 +28,29 @@ $ npm install nodobe -g
 $ nodobe --app photoshop --script my-automation-script.js
 ```
 
-### Node usage
-
-```javascript
-const nodobe = require('nodobe')
-
-nodobe({
-  script: 'relative/path/to/script',
-  // other options
-}).catch(err => console.error(err)
-```
-
 ### Options
-
-The same options are available in the node interface and the cli
 
 * `--script, -s` __required__ relative path to your automation script
 * `--app, -a` __required__ adobe application you wish to use (ie: `photoshop`)
 * `--config, -c` relative path to a configuration file for your script
 * `--preset, -p` path to the generated script (if true, creates the script in application’s preset folder)
 * `--help` outputs help in cli
+
+### Node usage
+
+The same options are available in the node interface as well
+
+```javascript
+const nodobe = require('nodobe')
+
+nodobe({
+  script: 'relative/path/to/script',
+  app: 'illustrator',
+  // ... optional options
+}).catch(err => console.error(err)
+```
+
+
 
 ### Immediate execution vs preset generation
 
