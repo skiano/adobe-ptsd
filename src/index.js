@@ -8,21 +8,7 @@ const buble = require('rollup-plugin-buble')
 const { promisify } = require('util');
 const exec = promisify(require('child_process').exec)
 
-const options = require('minimist')(process.argv.slice(2), {
-  alias: {
-    c: 'config',
-    a: 'app',
-    s: 'script',
-    p: 'preset',
-    h: 'help',
-  },
-  default: {
-    execute: true,
-  }
-});
-
 module.exports = async function nodobe(options) {
-
   /**
    * Validate options
    */
