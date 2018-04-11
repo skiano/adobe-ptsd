@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node demo"
+    "start": "node dev",
+    "dev": "node dev --watch"
   },
   "repository": {
     "type": "git",
@@ -27,5 +28,8 @@
     "rollup": "^0.57.1",
     "rollup-plugin-buble": "^0.19.2",
     "rollup-plugin-node-resolve": "^3.3.0"
+  },
+  "devDependencies": {
+    "chokidar": "^2.0.3"
   }
 }
