@@ -44,10 +44,10 @@ The same options are available in the node interface as well
 const nodobe = require('nodobe')
 
 nodobe({
-  script: 'relative/path/to/script',
+  script: 'relative/path/to/script.js',
   app: 'illustrator',
   // ... optional options
-}).catch(err => console.error(err)
+}).catch(err => console.error(err))
 ```
 
 
