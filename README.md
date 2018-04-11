@@ -6,8 +6,8 @@ Automate Adobe products with es6 and execute them from node or command line.
 
 ### Why
 
-* Adobe’s IDE for making .jsx scripts makes me sad, and I would rather use more familiar tools and conventions.
-* I want to use and reuse bits of script without mysterious include comments
+* Adobe’s IDE for making .jsx scripts makes me sad, and I would rather use more familiar tools and conventions
+* I want to reuse bits of script without mysterious include comments
 * Sometimes I want to make the script accept arguments on a command line or from another process (such as my build) and I'm not aware of an easy way to do that without something like this.
 
 ### Drawbacks
