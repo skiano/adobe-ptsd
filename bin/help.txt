@@ -10,7 +10,7 @@ nodobe
 
     Optional:
 
-    -e, --execute          whether or not to execute immediately (defaults to true)
+    -p, --preset           create a preset instead of executing
     -c, --config           a configuration file for your script
 
     Any additional arguments will also be made available to your script
