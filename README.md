@@ -2,7 +2,7 @@
 
 ### What
 
-Create your Adobe .jsx scripts with es6 import/export goodness and execute them from node or command line.
+Automate Adobe products scripts with es6 import/export goodness and execute them from node or command line.
 
 ### Why
 
