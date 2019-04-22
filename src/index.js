@@ -121,7 +121,7 @@ module.exports = async function nodobe(options) {
       })
       return path.basename(f[0])
     } catch (e) {
-      e.message = `Could not fint .app file in ${appLocation}\nCause: ${e.message}`
+      e.message = `Could not find .app file in ${appLocation}\nCause: ${e.message}`
       throw e
     }
   }
