@@ -1,12 +1,13 @@
 #! /usr/bin/env node
 const fs = require('fs-extra')
+const util = require('util')
 const path = require('path')
 const chalk = require('chalk')
 const rollup = require('rollup')
 const resolve = require('rollup-plugin-node-resolve')
 const buble = require('rollup-plugin-buble')
-const { promisify } = require('util');
-const exec = promisify(require('child_process').exec)
+const glob = util.promisify(require('glob'))
+const exec = util.promisify(require('child_process').exec)
 
 module.exports = async function nodobe(options) {
   /**
@@ -29,10 +30,9 @@ module.exports = async function nodobe(options) {
   const tempScriptDest = path.resolve(tempDirectory, 'src.temp.scpt')
   const scriptPath = require.resolve(path.resolve(process.cwd(), options.script))
   const sourcePath = require.resolve(path.resolve(__dirname, './public'))
-  const configPath = options.config
+  const configPath = typeof options.config === 'string'
     ? require.resolve(path.resolve(process.cwd(), options.config))
     : require.resolve(path.resolve(__dirname, 'defaultConfig'))
-
 
   /**
    * Load the configuration for the script
@@ -40,7 +40,6 @@ module.exports = async function nodobe(options) {
   let config
   try {
     config = require(configPath)
-
     /**
      * Support async config function based on options
      */
@@ -48,7 +47,8 @@ module.exports = async function nodobe(options) {
       config = await Promise.resolve(config(options))
     }
   } catch (e) {
-    throw new Error(`Error loading configuration: ${configPath}`)
+    e.message = `Error loading configuration: ${configPath}\nCause: ${e.message}`
+    throw e
   }
 
   /**
@@ -114,6 +114,18 @@ module.exports = async function nodobe(options) {
     return matchingApps[0]
   }
 
+  async function getAppName(appLocation) {
+    try {
+      const f = await glob(`*.app`, {
+        cwd: path.resolve(applicationsPath, appLocation),
+      })
+      return path.basename(f[0])
+    } catch (e) {
+      e.message = `Could not find .app file in ${appLocation}\nCause: ${e.message}`
+      throw e
+    }
+  }
+
   /**
    * createAppleScript
    * makes a temporary apple script which
@@ -121,8 +133,10 @@ module.exports = async function nodobe(options) {
    * @see: https://stackoverflow.com/a/9029394
    */
   async function createAppleScript(app) {
+    const appName = await getAppName(app)
     await fs.writeFile(tempScriptDest, [
-      `tell application "${app}"`,
+      `tell application "${appName}"`,
+      'activate',
       `\t do javascript "#include ${tempJsxDest}"`,
       'end tell',
     ].join('\n'))
