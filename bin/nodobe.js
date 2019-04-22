@@ -19,7 +19,7 @@ if (options.help) {
   console.log(`\n${fs.readFileSync(require.resolve('./help.txt')).toString().trim()}\n`)
 } else {
   nodobe(options).catch(err => {
-    console.error(chalk.red(err.toString()))
+    console.error(chalk.red(err.stack))
   }).then(message => {
     console.log(message)
   })
